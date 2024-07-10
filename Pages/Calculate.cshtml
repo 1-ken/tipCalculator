@@ -1,0 +1,39 @@
+﻿@page
+@model TipCalculator.Pages.CalculateModel
+@{
+    ViewData["Title"] = "Tip Calculator";
+}
+
+<h2>Tip Calculator</h2>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="TipCalculator.MealCost"></label>
+        <input asp-for="TipCalculator.MealCost" class="form-control" />
+        <span asp-validation-for="TipCalculator.MealCost" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Calculate</button>
+    <a asp-page="/Calculate" class="btn btn-secondary">Clear</a>
+
+    @if (Model.TipCalculator.MealCost > 0)
+    {
+        <h3>Tip Amounts</h3>
+        <ul>
+            <li>10%: @Model.Tip10:$</li>
+            <li>15%: @Model.Tip15:$</li>
+            <li>20%: @Model.Tip20:$</li>
+        </ul>
+    }
+    else
+    {
+        <h3>Tip Amounts</h3>
+        <ul>
+            <li>10%: $0.00</li>
+            <li>15%: $0.00</li>
+            <li>20%: $0.00</li>
+        </ul>
+    }
+</form>
